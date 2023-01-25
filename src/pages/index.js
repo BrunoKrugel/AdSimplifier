@@ -1,24 +1,18 @@
-import Head from "next/head";
-import { Inter } from "@next/font/google";
-import styles from "@/styles/Home.module.css";
+// import Hero from '../components/Hero/Hero';
+import { Layout } from '../layout/Layout';
+import { Section } from '../styles/GlobalComponents';
 import Chart from "../components/chart/chart";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export default function Home() {
+const Home = () => {
   return (
-    <>
-      <Head>
-        <title>Dashboard</title>
-        <meta name="description" content="Dashboard" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className={styles.main}>
-        <div className={styles.center}>
-          <Chart />
-        </div>
-      </main>
-    </>
+    <Layout>
+        <Section grid>
+            {/* <Hero /> */}
+            <Chart />
+            {/* <BgAnimation /> */}
+        </Section>
+    </Layout>
   );
-}
+};
+
+export default Home;
