@@ -12,5 +12,5 @@ export default NextAuth({
       clientSecret: process.env.FACEBOOK_SECRET
     }),
   ],
-//   secret: process.env.NEXT_AUTH_SECRET
+  secret: process.env.NEXT_AUTH_SECRET
 })
