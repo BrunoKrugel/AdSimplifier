@@ -2,12 +2,14 @@
   "name": "cpa-dashboard",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"{,!(.next)/**/}*.{js, jsx}\""
+    "format": "prettier --write \"{,!(.next)/**/}*.{js, jsx}\"",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.9",
@@ -21,6 +23,8 @@
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.5",
     "framer-motion": "^8.5.2",
+    "jest": "^29.4.1",
+    "mongodb": "^4.13.0",
     "next": "13.1.5",
     "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",
@@ -28,5 +32,34 @@
     "react-icons": "^4.2.0",
     "styled-components": "^5.3.0",
     "styled-normalize": "^8.0.7"
+  },
+  "jest": {
+    "testEnvironment": "jest-environment-node",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "./lib/**"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/cypress/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ],
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "cobertura",
+      "text",
+      "clover",
+      "text-summary"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 10
+      }
+    },
+    "reporters": [
+      "default"
+    ]
   }
 }
