@@ -13,7 +13,7 @@ const theme = createTheme({
   },
 });
 
-export default function App({ Component, pageProps, session }) {
+export default function App({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <Head>
@@ -22,6 +22,6 @@ export default function App({ Component, pageProps, session }) {
       <Theme>
         <Component {...pageProps} />
       </Theme>
-      </ThemeProvider>
+    </ThemeProvider>
   );
 }
