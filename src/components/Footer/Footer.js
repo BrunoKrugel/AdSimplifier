@@ -1,9 +1,7 @@
 import React from 'react';
-import { Link } from '../../styles/GlobalComponents';
 import {
   CompanyContainer,
   FooterWrapper,
-  Slogan,
   SocialIconsContainer,
 } from './FooterStyles';
 
