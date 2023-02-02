@@ -1,5 +1,5 @@
-import { IoIosArrowDropdown } from "react-icons/io";
-import styled from "styled-components";
+import { IoIosArrowDropdown } from 'react-icons/io';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: grid;
@@ -96,8 +96,8 @@ export const NavProductsIcon = styled(IoIosArrowDropdown)`
   display: flex;
   align-self: center;
   transition: 0.3s ease;
-  opacity: ${({ isOpen }) => (isOpen ? "1" : ".75")};
-  transform: ${({ isOpen }) => (isOpen ? "scaleY(-1)" : "scaleY(1)")};
+  opacity: ${({ isOpen }) => (isOpen ? '1' : '.75')};
+  transform: ${({ isOpen }) => (isOpen ? 'scaleY(-1)' : 'scaleY(1)')};
 
   &:hover {
     opacity: 1;

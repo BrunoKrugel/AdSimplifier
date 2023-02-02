@@ -1,5 +1,5 @@
-import { Layout } from "../layout/Layout";
-import { Section } from "../styles/GlobalComponents";
+import { Layout } from '../layout/Layout';
+import { Section } from '../styles/GlobalComponents';
 
 const Home = () => {
   return (

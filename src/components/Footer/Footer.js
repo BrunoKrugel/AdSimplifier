@@ -1,11 +1,9 @@
-import React from "react";
-import { Link } from "../../styles/GlobalComponents";
+import React from 'react';
 import {
   CompanyContainer,
   FooterWrapper,
-  Slogan,
   SocialIconsContainer,
-} from "./FooterStyles";
+} from './FooterStyles';
 
 const Footer = () => {
   return (
