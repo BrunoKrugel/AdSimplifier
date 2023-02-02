@@ -1,13 +1,13 @@
-import { Layout } from '../layout/Layout';
-import { Section } from '../styles/GlobalComponents';
+import { Layout } from "../layout/Layout";
+import { Section } from "../styles/GlobalComponents";
 import Chart from "../components/chart/chart";
 
 const Home = () => {
   return (
     <Layout>
-        <Section grid>
-            <Chart />
-        </Section>
+      <Section grid>
+        <Chart />
+      </Section>
     </Layout>
   );
 };

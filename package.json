@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write \"{,!(.next)/**/}*.{js, jsx}\""
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.9",
@@ -16,6 +17,7 @@
     "@mui/material": "^5.11.6",
     "@next/font": "13.1.5",
     "chart.js": "^4.2.0",
+    "prettier": "^2.5.1",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.5",
     "framer-motion": "^8.5.2",

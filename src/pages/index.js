@@ -1,12 +1,10 @@
-import { Layout } from '../layout/Layout';
-import { Section } from '../styles/GlobalComponents';
+import { Layout } from "../layout/Layout";
+import { Section } from "../styles/GlobalComponents";
 
 const Home = () => {
   return (
     <Layout>
-        <Section grid>
-            Home page
-        </Section>
+      <Section grid>Home page</Section>
     </Layout>
   );
 };
