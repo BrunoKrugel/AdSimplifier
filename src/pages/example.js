@@ -2,8 +2,15 @@ import { Layout } from '../layout/Layout';
 import { Section } from '../styles/GlobalComponents';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
 import React from 'react';
 import axios from 'axios';
+import Chart from '../components/chart/chart';
+
 
 const handleCreate = async (e) => {
   e.preventDefault();
@@ -38,7 +45,36 @@ const handleLogin = async (e) => {
   }
 };
 
+
 const Aux = () => {
+  
+  const [startDate, setStartDate] = React.useState(dayjs('2023-01-01T00:00:00'));
+  const [endDate, setEndDate] = React.useState(dayjs('2023-01-01T00:00:00'));
+  
+  const handleData = async (e) => {
+    try {
+      const response = await axios.post(
+        `${window.location.origin}/api/sales/kiwify`,
+        {
+          user_id: "test",
+          initialDate: startDate.format('YYYY-MM-DD'),
+          endDate: endDate.format('YYYY-MM-DD'),
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleStart = (newValue) => {
+    setStartDate(newValue);
+  };
+
+  const handleEnd = (newValue) => {
+    setEndDate(newValue);
+  };
+
   return (
     <Layout>
       <Section grid>
@@ -57,7 +93,7 @@ const Aux = () => {
             </Button>
           </div>
         </form>
-
+        <br/>
         <form onSubmit={handleLogin}>
           <TextField id="username" label="Usuário" variant="outlined" />
           <TextField
@@ -72,6 +108,32 @@ const Aux = () => {
             </Button>
           </div>
         </form>
+        <br/>
+        <Stack spacing={3}>
+
+        <Button onClick={handleData} variant="contained">
+          Click me
+        </Button>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DesktopDatePicker
+            label="Initial Date"
+            inputFormat="MM/DD/YYYY"
+            value={startDate}
+            onChange={handleStart}
+            renderInput={(params) => <TextField {...params} />}
+          />
+          <DesktopDatePicker
+            label="End Date"
+            inputFormat="MM/DD/YYYY"
+            value={endDate}
+            onChange={handleEnd}
+            renderInput={(params) => <TextField {...params} />}
+          />          
+        </LocalizationProvider>
+
+        <Chart />
+
+        </Stack>
       </Section>
     </Layout>
   );
