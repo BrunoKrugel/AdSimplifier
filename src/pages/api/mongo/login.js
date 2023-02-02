@@ -25,6 +25,6 @@ export default async function authenticate(req, res) {
     await isAuthPromise;
     res.status(200).send();
   } catch (error) {
-    res.status(401).send();
+    res.status(404).send();
   }
 }

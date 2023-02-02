@@ -18,12 +18,8 @@ function persistUser(req) {
             },
             function (err, result) {
               if (err || !result) {
-                status.code = 402;
-                status.message = 'Erro durante criação do usuário';
                 reject();
               } else {
-                status.code = 201;
-                status.message = 'Usuário criado com sucesso';
                 resolve();
               }
             }
@@ -49,19 +45,16 @@ export default async function user(req, res) {
             function (err, result) {
               if (err || !result) {
                 persistUser(req).then((_res) => {
+                  res.status(201).send(status);
                   resolve();
-                  res.send(status);
                 });
               } else {
-                status.code = 403;
-                status.message = 'Usuário já existe';
-                res.send(status);
+                res.status(403).send(status);
                 reject();
               }
             }
           );
-      })
-      .catch((err) => {
+      }).catch((err) => {
         reject(err);
       });
   });
