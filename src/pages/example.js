@@ -11,6 +11,8 @@ import React from 'react';
 import axios from 'axios';
 import Chart from '../components/chart/chart';
 
+// import { parseSales } from '@/lib/kiwify/parser';
+
 
 const handleCreate = async (e) => {
   e.preventDefault();
@@ -45,23 +47,25 @@ const handleLogin = async (e) => {
   }
 };
 
-
 const Aux = () => {
-  
-  const [startDate, setStartDate] = React.useState(dayjs('2023-01-01T00:00:00'));
+  const [startDate, setStartDate] = React.useState(
+    dayjs('2023-01-01T00:00:00')
+  );
   const [endDate, setEndDate] = React.useState(dayjs('2023-01-01T00:00:00'));
-  
+
   const handleData = async (e) => {
     try {
-      const response = await axios.post(
+      await axios.post(
         `${window.location.origin}/api/sales/kiwify`,
         {
-          user_id: "test",
+          user_id: 'test',
           initialDate: startDate.format('YYYY-MM-DD'),
           endDate: endDate.format('YYYY-MM-DD'),
         }
-      );
-      console.log(response);
+      ).then((res) => {
+        console.log(res.data);
+        // parseSales(res.data);
+      });
     } catch (error) {
       console.error(error);
     }
@@ -93,7 +97,7 @@ const Aux = () => {
             </Button>
           </div>
         </form>
-        <br/>
+        <br />
         <form onSubmit={handleLogin}>
           <TextField id="username" label="Usuário" variant="outlined" />
           <TextField
@@ -108,31 +112,29 @@ const Aux = () => {
             </Button>
           </div>
         </form>
-        <br/>
+        <br />
         <Stack spacing={3}>
+          <Button onClick={handleData} variant="contained">
+            Click me
+          </Button>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DesktopDatePicker
+              label="Initial Date"
+              inputFormat="MM/DD/YYYY"
+              value={startDate}
+              onChange={handleStart}
+              renderInput={(params) => <TextField {...params} />}
+            />
+            <DesktopDatePicker
+              label="End Date"
+              inputFormat="MM/DD/YYYY"
+              value={endDate}
+              onChange={handleEnd}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
 
-        <Button onClick={handleData} variant="contained">
-          Click me
-        </Button>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DesktopDatePicker
-            label="Initial Date"
-            inputFormat="MM/DD/YYYY"
-            value={startDate}
-            onChange={handleStart}
-            renderInput={(params) => <TextField {...params} />}
-          />
-          <DesktopDatePicker
-            label="End Date"
-            inputFormat="MM/DD/YYYY"
-            value={endDate}
-            onChange={handleEnd}
-            renderInput={(params) => <TextField {...params} />}
-          />          
-        </LocalizationProvider>
-
-        <Chart />
-
+          <Chart />
         </Stack>
       </Section>
     </Layout>
