@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import * as S from "./LoginBoxStyles";
 import Input from "@/components/micros/Input/Input";
 import lockIcon from "../../../assets/lock-svgrepo-com.svg";
 import personIcon from "../../../assets/person-male-svgrepo-com.svg";
 
 const LoginBox = (props) =>{
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+
     return(
         <S.Container>
             <S.MarginContainer>

@@ -16,6 +16,7 @@ export const Input = styled.input`
   font-size: ${props => props.fontSize? props.fontSize : "16px"};
   line-height: ${props => props.lineHeight? props.lineHeight : "16px"};
   color: ${props => props.color? props.color : "#646467"};
+  border: none;
   &::placeholder{
     color: ${props => props.color? props.color : "#B8B8B7"};
   }

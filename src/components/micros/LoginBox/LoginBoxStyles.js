@@ -67,5 +67,7 @@ export const ForgotPassword = styled.div`
     font-weight: 600;
     font-size: 12px;
     color: ${props => props.color? props.color : "#B8B8B7"};
+    border: none;
+    background: transparent;
   }
 `;
