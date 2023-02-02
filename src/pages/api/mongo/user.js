@@ -54,7 +54,8 @@ export default async function user(req, res) {
               }
             }
           );
-      }).catch((err) => {
+      })
+      .catch((err) => {
         reject(err);
       });
   });
