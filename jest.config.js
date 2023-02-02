@@ -1,10 +1,10 @@
 // jest.config.js
-const nextJest = require('next/jest')
+const nextJest = require('next/jest');
 
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
   dir: './',
-})
+});
 
 // Add any custom config to be passed to Jest
 /** @type {import('jest').Config} */
@@ -18,13 +18,19 @@ const customJestConfig = {
   // you will have to add the moduleNameMapper in order for jest to resolve your absolute paths.
   // The paths have to be matching with the paths option within the compilerOptions in the tsconfig.json
   // For example:
-  coverageReporters: ['clover', 'text-summary','json', 'lcov', ['text', {skipFull: true}]],
+  coverageReporters: [
+    'clover',
+    'text-summary',
+    'json',
+    'lcov',
+    ['text', { skipFull: true }],
+  ],
 
   moduleNameMapper: {
     '@/(.*)$': '<rootDir>/src/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
-}
+};
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
-module.exports = createJestConfig(customJestConfig)
+module.exports = createJestConfig(customJestConfig);

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,10 +8,10 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js";
+} from 'chart.js';
 
-import { Line } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
+import { Line } from 'react-chartjs-2';
+import { faker } from '@faker-js/faker';
 
 ChartJS.register(
   CategoryScale,
@@ -28,43 +28,43 @@ const Chart = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: "bottom",
+        position: 'bottom',
       },
       title: {
         display: true,
-        text: "Dashboard",
+        text: 'Dashboard',
       },
     },
   };
 
   const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
   ];
 
   const data = {
     labels,
     datasets: [
       {
-        label: "Campanha 1",
+        label: 'Campanha 1',
         data: labels.map(() =>
           faker.datatype.number({ min: -1000, max: 1000 })
         ),
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
-        label: "Campanha 2",
+        label: 'Campanha 2',
         data: labels.map(() =>
           faker.datatype.number({ min: -1000, max: 1000 })
         ),
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },
     ],
   };
