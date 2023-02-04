@@ -23,7 +23,6 @@ export default async function getSales(req, res) {
               res.status(404).send();
               reject();
             } else {
-              console.log(result);
               res.status(200).send(result);
               resolve();
             }

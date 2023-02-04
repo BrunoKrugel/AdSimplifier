@@ -23,7 +23,7 @@ ChartJS.register(
   Legend
 );
 
-const Chart = () => {
+const Chart = (props) => {
   const options = {
     responsive: true,
     plugins: {
@@ -36,8 +36,8 @@ const Chart = () => {
       },
     },
   };
-
-  const labels = [
+  let labels = [];
+  const months = [
     'January',
     'February',
     'March',
@@ -46,27 +46,15 @@ const Chart = () => {
     'June',
     'July',
   ];
+  if (props.labels != null) {
+    labels = props.labels;
+  } else {
+    labels = months;
+  }
 
   const data = {
     labels,
-    datasets: [
-      {
-        label: 'Campanha 1',
-        data: labels.map(() =>
-          faker.datatype.number({ min: -1000, max: 1000 })
-        ),
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-      {
-        label: 'Campanha 2',
-        data: labels.map(() =>
-          faker.datatype.number({ min: -1000, max: 1000 })
-        ),
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      },
-    ],
+    datasets: props.dataset,
   };
 
   return <Line options={options} data={data} />;

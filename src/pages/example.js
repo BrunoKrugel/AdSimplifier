@@ -10,9 +10,9 @@ import dayjs from 'dayjs';
 import React from 'react';
 import axios from 'axios';
 import Chart from '../components/chart/chart';
+import { ArrayOfDates } from '@/lib/dates/date';
 
-// import { parseSales } from '@/lib/kiwify/parser';
-
+import { parseSalesToChart } from '@/lib/kiwify/parser';
 
 const handleCreate = async (e) => {
   e.preventDefault();
@@ -52,20 +52,21 @@ const Aux = () => {
     dayjs('2023-01-01T00:00:00')
   );
   const [endDate, setEndDate] = React.useState(dayjs('2023-01-01T00:00:00'));
+  const [sales, setSales] = React.useState([]);
 
   const handleData = async (e) => {
     try {
-      await axios.post(
-        `${window.location.origin}/api/sales/kiwify`,
-        {
+      await axios
+        .post(`${window.location.origin}/api/sales/kiwify`, {
           user_id: 'test',
           initialDate: startDate.format('YYYY-MM-DD'),
           endDate: endDate.format('YYYY-MM-DD'),
-        }
-      ).then((res) => {
-        console.log(res.data);
-        // parseSales(res.data);
-      });
+        })
+        .then((res) => {
+          setSales(
+            parseSalesToChart(res.data, ArrayOfDates(startDate, endDate))
+          );
+        });
     } catch (error) {
       console.error(error);
     }
@@ -134,7 +135,7 @@ const Aux = () => {
             />
           </LocalizationProvider>
 
-          <Chart />
+          <Chart labels={sales.arrDates} dataset={sales.chartData} />
         </Stack>
       </Section>
     </Layout>
