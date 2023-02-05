@@ -3,6 +3,10 @@ import { Section } from '../styles/GlobalComponents';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -48,6 +52,11 @@ const handleLogin = async (e) => {
 };
 
 const Aux = () => {
+
+  const [chart, setChart] = React.useState('');
+
+
+
   const [startDate, setStartDate] = React.useState(
     dayjs('2023-01-01T00:00:00')
   );
@@ -70,6 +79,10 @@ const Aux = () => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleChange = (event) => {
+    setChart(event.target.value);
   };
 
   const handleStart = (newValue) => {
@@ -134,8 +147,21 @@ const Aux = () => {
               renderInput={(params) => <TextField {...params} />}
             />
           </LocalizationProvider>
-
-          <Chart labels={sales.arrDates} dataset={sales.chartData} />
+          <FormControl fullWidth>
+            <InputLabel id="chart-type-label">Chart Type</InputLabel>
+            <Select
+              labelId="chart-type-label"
+              id="chart-type"
+              defaultValue={10}
+              value={chart}
+              label="Chart Type"
+              onChange={handleChange}
+              >
+              <MenuItem value={10}>Line</MenuItem>
+              <MenuItem value={20}>Bar</MenuItem>
+            </Select>
+          </FormControl>
+          <Chart labels={sales.arrDates} dataset={sales.chartData} type={chart}/>
         </Stack>
       </Section>
     </Layout>
