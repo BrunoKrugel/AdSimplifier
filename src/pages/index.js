@@ -1,10 +1,10 @@
 import { Layout } from '../layout/Layout';
 import { Section } from '../styles/GlobalComponents';
-import LoginPage from "@/pages/LoginPage/LoginPage";
+import Login from '@/components/Login/Login';
 
 const Home = () => {
   return (
-      <LoginPage/>
+    <Login />
     // <Layout>
     //   {/*<Section grid>Home page</Section>*/}
     // {/*</Layout>*/}
