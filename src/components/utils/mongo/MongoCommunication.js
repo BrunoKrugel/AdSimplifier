@@ -1,15 +1,15 @@
 import React from "react";
 import axios from "axios";
 
-export const handleCreate = async (e) => {
-    e.preventDefault();
+
+export const handleCreate = async (user, pass, email) => {
     try {
         const response = await axios.post(
             `${window.location.origin}/api/mongo/user`,
             {
-                username: e.target.user.value,
-                password: e.target.password.value,
-                email: e.target.email.value,
+                username: user,
+                password: pass,
+                email: email,
             }
         );
         console.log(response);
@@ -18,18 +18,17 @@ export const handleCreate = async (e) => {
     }
 };
 
-export const handleLogin = async (e) => {
-    e.preventDefault();
+export const handleLogin = async (user, pass) => {
     try {
-        const response = await axios.post(
+        return (await axios.post(
             `${window.location.origin}/api/mongo/login`,
             {
-                username: e.target.username.value,
-                password: e.target.passwordlogin.value,
+                username: user,
+                password: pass,
             }
-        );
-        console.log(response);
+        )).status;
+
     } catch (error) {
-        console.error(error);
+        return error.response.status;
     }
 };

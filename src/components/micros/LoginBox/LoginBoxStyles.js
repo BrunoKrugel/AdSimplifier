@@ -36,6 +36,7 @@ export const Button = styled.button`
   border-radius: 12px;
   letter-spacing: 2px;
   background: linear-gradient(180deg, #313131 0%, #4D3D70 130%);
+  border: none;
 `;
 
 export const Line = styled.hr`
