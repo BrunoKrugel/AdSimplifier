@@ -11,14 +11,12 @@
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest"
   },
   "dependencies": {
-    "@babel/core": "7.16.0",
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@faker-js/faker": "^7.6.0",
     "@fontsource/roboto": "^4.5.8",
     "@mui/material": "^5.11.6",
-    "@mui/system": "^5.4.1",
     "@mui/x-date-pickers": "^5.0.17",
     "@next/font": "13.1.5",
     "@testing-library/jest-dom": "^5.16.5",
@@ -38,9 +36,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.2.0",
-    "react-is": "16.8.0",
     "styled-components": "^5.3.0",
     "styled-normalize": "^8.0.7"
-  },
-  "packageManager": "yarn@3.4.1"
+  }
 }
