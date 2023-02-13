@@ -3,6 +3,10 @@ import { Section } from '../styles/GlobalComponents';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -10,9 +14,9 @@ import dayjs from 'dayjs';
 import React from 'react';
 import axios from 'axios';
 import Chart from '../components/chart/chart';
+import { ArrayOfDates } from '@/lib/dates/date';
 
-// import { parseSales } from '@/lib/kiwify/parser';
-
+import { parseSalesToChart } from '@/lib/kiwify/parser';
 
 const handleCreate = async (e) => {
   e.preventDefault();
@@ -48,27 +52,37 @@ const handleLogin = async (e) => {
 };
 
 const Aux = () => {
+
+  const [chart, setChart] = React.useState('');
+
+
+
   const [startDate, setStartDate] = React.useState(
     dayjs('2023-01-01T00:00:00')
   );
   const [endDate, setEndDate] = React.useState(dayjs('2023-01-01T00:00:00'));
+  const [sales, setSales] = React.useState([]);
 
   const handleData = async (e) => {
     try {
-      await axios.post(
-        `${window.location.origin}/api/sales/kiwify`,
-        {
+      await axios
+        .post(`${window.location.origin}/api/sales/kiwify`, {
           user_id: 'test',
           initialDate: startDate.format('YYYY-MM-DD'),
           endDate: endDate.format('YYYY-MM-DD'),
-        }
-      ).then((res) => {
-        console.log(res.data);
-        // parseSales(res.data);
-      });
+        })
+        .then((res) => {
+          setSales(
+            parseSalesToChart(res.data, ArrayOfDates(startDate, endDate))
+          );
+        });
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleChange = (event) => {
+    setChart(event.target.value);
   };
 
   const handleStart = (newValue) => {
@@ -133,8 +147,21 @@ const Aux = () => {
               renderInput={(params) => <TextField {...params} />}
             />
           </LocalizationProvider>
-
-          <Chart />
+          <FormControl fullWidth>
+            <InputLabel id="chart-type-label">Chart Type</InputLabel>
+            <Select
+              labelId="chart-type-label"
+              id="chart-type"
+              defaultValue={10}
+              value={chart}
+              label="Chart Type"
+              onChange={handleChange}
+              >
+              <MenuItem value={10}>Line</MenuItem>
+              <MenuItem value={20}>Bar</MenuItem>
+            </Select>
+          </FormControl>
+          <Chart labels={sales.arrDates} dataset={sales.chartData} type={chart}/>
         </Stack>
       </Section>
     </Layout>

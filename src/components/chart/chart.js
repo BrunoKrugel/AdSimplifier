@@ -1,75 +1,31 @@
 import React from 'react';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
+import { Bar, Line } from 'react-chartjs-2';
+import 'chart.js/auto';
 
-import { Line } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
-const Chart = () => {
+const Chart = (props) => {
   const options = {
     responsive: true,
-    plugins: {
-      legend: {
-        position: 'bottom',
-      },
-      title: {
-        display: true,
-        text: 'Dashboard',
-      },
+    legend: {
+      position: 'bottom',
+    },
+    title: {
+      display: true,
+      text: 'Ofertas',
     },
   };
 
-  const labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-  ];
+  const { labels = [], dataset = [] } = props;
 
   const data = {
     labels,
-    datasets: [
-      {
-        label: 'Campanha 1',
-        data: labels.map(() =>
-          faker.datatype.number({ min: -1000, max: 1000 })
-        ),
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-      {
-        label: 'Campanha 2',
-        data: labels.map(() =>
-          faker.datatype.number({ min: -1000, max: 1000 })
-        ),
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      },
-    ],
+    datasets: dataset,
   };
 
-  return <Line options={options} data={data} />;
+  return props.type === 20 ? (
+    <Bar data={data} options={options} />
+  ) : (
+    <Line data={data} options={options} />
+  );
 };
 
 export default Chart;
