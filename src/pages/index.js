@@ -1,10 +1,8 @@
-import { Layout } from '../layout/Layout';
-import { Section } from '../styles/GlobalComponents';
-import Login from '@/components/Login/Login';
+import Login from "@/pages/login";
 
 function Home() {
   return (
-    <Login />
+    <Login/>
     // <Layout>
     //   {/*<Section grid>Home page</Section>*/}
     // {/*</Layout>*/}
