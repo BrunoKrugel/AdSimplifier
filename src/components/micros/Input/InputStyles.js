@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {adSimplifierTheme} from "@/themes/adSimplifier-theme";
 
 export const Container = styled.div`
   display: flex;
@@ -18,7 +19,7 @@ export const Input = styled.input`
   color: ${props => props.color? props.color : "#646467"};
   border: none;
   &::placeholder{
-    color: ${props => props.color? props.color : "#B8B8B7"};
+    color: ${props => props.color? props.color : adSimplifierTheme.colors.black10};
   }
   &:focus {
     outline: none;

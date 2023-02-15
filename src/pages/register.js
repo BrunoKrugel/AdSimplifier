@@ -1,6 +1,7 @@
 import {handleCreate} from "@/components/utils/mongo/MongoCommunication";
 import React, {useState} from "react";
-import RegisterPage from "@/components/RegisterPage/RegisterPage";
+import * as GS from '@/themes/globalTheme';
+import RegisterBox from "@/components/micros/RegisterBox/RegisterBox";
 
 const Register = () => {
     const [username, setUsername] = useState("");
@@ -17,8 +18,10 @@ const Register = () => {
     }
 
     return (
-        <RegisterPage showMessage={showMessage} setUsername={setUsername}
-                   setPassword={setPassword} handleSubmit={handleSubmit}/>
+        <GS.LinearGradientBG>
+            <RegisterBox setUsername={setUsername} setPassword={setPassword}
+                         setEmail={setEmail} handleSubmit={handleSubmit}/>
+        </GS.LinearGradientBG>
     );
 };
 

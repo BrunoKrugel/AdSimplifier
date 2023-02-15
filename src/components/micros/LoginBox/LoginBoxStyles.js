@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {adSimplifierTheme} from "@/themes/adSimplifier-theme";
 
 export const MarginContainer = styled.div`
   display: flex;
@@ -7,22 +8,22 @@ export const MarginContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  @media (max-width: 480px){
+  @media (max-width: ${adSimplifierTheme.breakpoints.xsm}){
     margin: 16px;
   }
 `;
 
 export const Title = styled.h1`
-  font-family: 'Roboto', sans-serif;
+  font-family: ${adSimplifierTheme.fonts.roboto};
   font-size: 28px;
-  font-weight: 900;
-  color: ${props => props.color? props.color : "#434346"};
+  font-weight: ${adSimplifierTheme.fontWeights.black};
+  color: ${props => props.color? props.color : adSimplifierTheme.colors.outerSpace };
   text-align: center;
 `;
 
 export const Line = styled.hr`
   width: 100%;
-  border-top: 2px solid #d2d2d0;
+  border-top: 2px solid ${adSimplifierTheme.colors.black10};
 `;
 
 export const CreateAccount = styled.div`
@@ -31,10 +32,10 @@ export const CreateAccount = styled.div`
   height: 14px;
   justify-content: center;
   button{
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
+    font-family: ${adSimplifierTheme.fonts.openSans};
+    font-weight: ${adSimplifierTheme.fontWeights.semiBold};
     font-size: 14px;
-    color: ${props => props.color? props.color : "#695791"};
+    color: ${props => props.color? props.color : adSimplifierTheme.colors.darkLavender};
     border: none;
     background: transparent;
     &:hover{

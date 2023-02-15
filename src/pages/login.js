@@ -1,6 +1,9 @@
-import LoginPage from "@/components/LoginPage/LoginPage";
-import {handleCreate, handleLogin} from "@/components/utils/mongo/MongoCommunication";
+import {handleLogin} from "@/components/utils/mongo/MongoCommunication";
 import React, {useState} from "react";
+import * as GS from '@/themes/globalTheme'
+import LoginBox from '@/components/micros/LoginBox/LoginBox';
+import MessageBox from "@/components/micros/MessageBox/MessageBox";
+import errorIcon from "@/assets/warning-circle-svgrepo-com.svg";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -15,9 +18,14 @@ const Login = () => {
     })
   }
 
-  return (
-    <LoginPage showMessage={showMessage} setUsername={setUsername}
-               setPassword={setPassword} handleSubmit={handleSubmit}/>
+  return(
+      <GS.LinearGradientBG>
+        <GS.MessageContainer>
+          {showMessage &&<MessageBox messageIcon={errorIcon.src} altText={"Erro"}
+                                           messageText={"Usuário e/ou senha incorretos"}/>}
+        </GS.MessageContainer>
+        <LoginBox setUsername={setUsername} setPassword={setPassword} handleSubmit={handleSubmit}/>
+      </GS.LinearGradientBG>
   );
 };
 
