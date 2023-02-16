@@ -9,18 +9,25 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [showMessage, setShowMessage] = React.useState(false);
 
-    function handleSubmit(e){
-        e.preventDefault();
-        handleCreate(username, password, email).then(res => {
-            if(res!==200) setShowMessage(true);
-            else window.location.href = "/success";
-        })
+    function handleSubmit(){
+        console.log(username, password, email)
+        if(username!=="" && password!=="" && email!==""
+            && username.length>5 && /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)){
+            // handleCreate(username, password, email).then(res => {
+            //     if(res!==201) setShowMessage(true);
+            //     else window.location.href = "/success";
+            // })
+            alert("Usuário criado com sucesso!");
+        }else {
+            alert("Usuário ou senha inválidos");
+        }
+
     }
 
     return (
         <GS.LinearGradientBG>
-            <RegisterBox setUsername={setUsername} setPassword={setPassword}
-                         setEmail={setEmail} handleSubmit={handleSubmit}/>
+            <RegisterBox setUsername={setUsername} setPassword={setPassword} username={username} password={password}
+                         email={email} setEmail={setEmail} handleSubmit={handleSubmit}/>
         </GS.LinearGradientBG>
     );
 };
