@@ -14,10 +14,8 @@ export default async function authenticate(req, res) {
     if (!isAuthPromise) {
       return res.status(404).json({ error: 'User not found' });
     }
-
     return res.status(200).json({ message: 'User found' });
   } catch (error) {
-    console.log('Error checking user:', error);
     return res.status(500).json({ error: 'Error checking user' });
   }
 }
