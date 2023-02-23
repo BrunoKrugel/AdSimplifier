@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {adSimplifierTheme} from "@/themes/adSimplifier-theme";
+import styled from 'styled-components';
+import { adSimplifierTheme } from '@/themes/adSimplifier-theme';
 
 export const LinearGradientBG = styled.div`
   display: flex;
@@ -8,22 +8,26 @@ export const LinearGradientBG = styled.div`
   height: 100vh;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, ${adSimplifierTheme.colors.darkCharcoal} 0%, ${adSimplifierTheme.colors.cyberGrape} 150%);
+  background: linear-gradient(
+    180deg,
+    ${adSimplifierTheme.colors.darkCharcoal} 0%,
+    ${adSimplifierTheme.colors.cyberGrape} 150%
+  );
   gap: ${adSimplifierTheme.gap.mega};
 `;
 
 export const MessageContainer = styled.div`
   width: 400px;
   height: 30px;
-  @media (max-width: 480px){
+  @media (max-width: 480px) {
     width: 100%;
   }
 `;
 
 export const FormContainer = styled.div`
   width: 100%;
-  height: ${props => props.height? props.height : "100%"};
-  form{
+  height: ${(props) => (props.height ? props.height : '100%')};
+  form {
     display: flex;
     width: 100%;
     height: 100%;
@@ -46,7 +50,7 @@ export const Button = styled.button`
   background: ${adSimplifierTheme.colors.cyberGrape};
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   border: none;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 `;
@@ -54,11 +58,11 @@ export const Button = styled.button`
 export const BoxContainer = styled.div`
   display: flex;
   width: 400px;
-  height: ${props => props.boxHeight? props.boxHeight : "100%"};
+  height: ${(props) => (props.boxHeight ? props.boxHeight : '100%')};
   border-radius: ${adSimplifierTheme.borderRadius.byte};
   background-color: ${adSimplifierTheme.colors.white};
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-  @media (max-width: 480px){
+  @media (max-width: 480px) {
     width: 100%;
     border-radius: ${adSimplifierTheme.borderRadius.none};
   }

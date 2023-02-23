@@ -1,16 +1,16 @@
-import dayjs from 'dayjs'
+import dayjs from 'dayjs';
 
 function ArrayOfDates(startDate, endDate) {
-  const dateArray = []
-  const stopDate = dayjs(endDate)
-  let currentDate = dayjs(startDate)
+  const dateArray = [];
+  const stopDate = dayjs(endDate);
+  let currentDate = dayjs(startDate);
 
   while (currentDate <= stopDate) {
-    dateArray.push(currentDate.format('YYYY-MM-DD'))
-    currentDate = currentDate.add(1, 'days')
+    dateArray.push(currentDate.format('YYYY-MM-DD'));
+    currentDate = currentDate.add(1, 'days');
   }
 
-  return dateArray
+  return dateArray;
 }
 
-export { ArrayOfDates }
+export { ArrayOfDates };

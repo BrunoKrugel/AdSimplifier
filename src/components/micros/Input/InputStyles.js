@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {adSimplifierTheme} from "@/themes/adSimplifier-theme";
+import { adSimplifierTheme } from '@/themes/adSimplifier-theme';
 
 export const Container = styled.div`
   display: flex;
@@ -14,12 +14,13 @@ export const Input = styled.input`
   margin-left: 8px;
   background: transparent;
   font-family: 'Roboto', sans-serif;
-  font-size: ${props => props.fontSize? props.fontSize : "16px"};
-  line-height: ${props => props.lineHeight? props.lineHeight : "16px"};
-  color: ${props => props.color? props.color : "#646467"};
+  font-size: ${(props) => (props.fontSize ? props.fontSize : '16px')};
+  line-height: ${(props) => (props.lineHeight ? props.lineHeight : '16px')};
+  color: ${(props) => (props.color ? props.color : '#646467')};
   border: none;
-  &::placeholder{
-    color: ${props => props.color? props.color : adSimplifierTheme.colors.black10};
+  &::placeholder {
+    color: ${(props) =>
+      props.color ? props.color : adSimplifierTheme.colors.black10};
   }
   &:focus {
     outline: none;
@@ -27,7 +28,7 @@ export const Input = styled.input`
 `;
 
 export const InputIcon = styled.img`
-    width: 20px;
+  width: 20px;
 `;
 
 export const Label = styled.label`
@@ -35,8 +36,9 @@ export const Label = styled.label`
   width: 100%;
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
-  color: ${props => props.colorLabel? props.colorLabel : "#646467"};
-  font-size: ${props => props.fontSizeLabel? props.fontSizeLabel : "14px"};
-  line-height: ${props => props.lineHeightLabel? props.lineHeightLabel : "22px"};
+  color: ${(props) => (props.colorLabel ? props.colorLabel : '#646467')};
+  font-size: ${(props) => (props.fontSizeLabel ? props.fontSizeLabel : '14px')};
+  line-height: ${(props) =>
+    props.lineHeightLabel ? props.lineHeightLabel : '22px'};
   padding-bottom: 8px;
 `;

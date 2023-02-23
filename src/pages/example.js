@@ -52,10 +52,7 @@ const handleLogin = async (e) => {
 };
 
 const Aux = () => {
-
   const [chart, setChart] = React.useState('');
-
-
 
   const [startDate, setStartDate] = React.useState(
     dayjs('2023-01-01T00:00:00')
@@ -156,12 +153,16 @@ const Aux = () => {
               value={chart}
               label="Chart Type"
               onChange={handleChange}
-              >
+            >
               <MenuItem value={10}>Line</MenuItem>
               <MenuItem value={20}>Bar</MenuItem>
             </Select>
           </FormControl>
-          <Chart labels={sales.arrDates} dataset={sales.chartData} type={chart}/>
+          <Chart
+            labels={sales.arrDates}
+            dataset={sales.chartData}
+            type={chart}
+          />
         </Stack>
       </Section>
     </Layout>

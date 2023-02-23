@@ -3,8 +3,8 @@ import { randomChartColor } from '@/lib/chart/color';
 function parseSalesToChart(arr, arrDates) {
   const salesMap = new Map();
 
-  arrDates.forEach(date => {
-    arr.forEach(item => {
+  arrDates.forEach((date) => {
+    arr.forEach((item) => {
       if (date === item.date.split('T')[0]) {
         let sales = salesMap.get(item.product_name) || [];
         sales.push({
@@ -16,18 +16,18 @@ function parseSalesToChart(arr, arrDates) {
       }
     });
   });
-  return { 
+  return {
     chartData: organizeDateToChart(salesMap, arrDates),
-    arrDates 
+    arrDates,
   };
 }
 
 function organizeDateToChart(salesMap, arrDates) {
-  return Array.from(salesMap.keys()).map(key => {
+  return Array.from(salesMap.keys()).map((key) => {
     const color = randomChartColor();
     const sales = salesMap.get(key);
-    const saleData = arrDates.map(date => 
-      sales.find(item => item.date === date)?.sales || 0
+    const saleData = arrDates.map(
+      (date) => sales.find((item) => item.date === date)?.sales || 0
     );
 
     return {

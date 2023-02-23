@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {adSimplifierTheme} from "@/themes/adSimplifier-theme";
+import styled from 'styled-components';
+import { adSimplifierTheme } from '@/themes/adSimplifier-theme';
 
 export const MarginContainer = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const MarginContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  @media (max-width: ${adSimplifierTheme.breakpoints.xsm}){
+  @media (max-width: ${adSimplifierTheme.breakpoints.xsm}) {
     margin: 16px;
   }
 `;
@@ -17,7 +17,8 @@ export const Title = styled.h1`
   font-family: ${adSimplifierTheme.fonts.roboto};
   font-size: 28px;
   font-weight: ${adSimplifierTheme.fontWeights.black};
-  color: ${props => props.color? props.color : adSimplifierTheme.colors.outerSpace };
+  color: ${(props) =>
+    props.color ? props.color : adSimplifierTheme.colors.outerSpace};
   text-align: center;
 `;
 
@@ -31,14 +32,15 @@ export const CreateAccount = styled.div`
   width: 100%;
   height: 14px;
   justify-content: center;
-  button{
+  button {
     font-family: ${adSimplifierTheme.fonts.openSans};
     font-weight: ${adSimplifierTheme.fontWeights.semiBold};
     font-size: 14px;
-    color: ${props => props.color? props.color : adSimplifierTheme.colors.darkLavender};
+    color: ${(props) =>
+      props.color ? props.color : adSimplifierTheme.colors.darkLavender};
     border: none;
     background: transparent;
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }

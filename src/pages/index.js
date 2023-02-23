@@ -1,8 +1,8 @@
-import Login from "@/pages/login";
+import Login from '@/pages/login';
 
 function Home() {
   return (
-    <Login/>
+    <Login />
     // <Layout>
     //   {/*<Section grid>Home page</Section>*/}
     // {/*</Layout>*/}
