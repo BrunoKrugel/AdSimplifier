@@ -33,16 +33,19 @@ function persistUser(req) {
 export default async function user(req, res) {
   try {
     const client = await clientPromise;
-    const user = await client.db('account').collection('user').findOne({
-      username: req.body.username,
-    });
+    const user = await client
+      .db('account')
+      .collection('user')
+      .findOne({ username: req.body.username });
 
     if (user) {
-      return res.status(400).json({ message: 'User already exist' });
+      return res.status(400).json({ message: 'User already exists' });
     }
+
     persistUser(req);
-    return res.status(200).json({ error: 'User created' });
+    return res.status(200).json({ message: 'User created' });
   } catch (error) {
+    console.error(error);
     return res.status(500).json({ error: 'Error creating user' });
   }
 }
