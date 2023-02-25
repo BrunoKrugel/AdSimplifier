@@ -1,8 +1,5 @@
 import Keyv from 'keyv';
 
-if (!global._cacheKeyv) {
-  global._cacheKeyv = new Keyv();
-}
-let cacheKeyv = global._cacheKeyv;
+const keyv = new Keyv();
 
-export default cacheKeyv;
+export default keyv;
