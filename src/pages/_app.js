@@ -5,10 +5,12 @@ import Head from 'next/head';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#86AEFF',
+      main: 'hsl(120, 38%, 42%)',
+      dark: 'hsl(132, 94%, 21%)',
     },
     secondary: {
-      main: '#1B0E51',
+      main: 'hsl(0, 0%, 17%)',
+      dark: 'hsl(0, 0%, 0%)',
     },
   },
 });

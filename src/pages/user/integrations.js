@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@mui/material';
 import SlidePanel from '@/components/SlidePanel/SlidePanel';
+import { IntegrationBox } from '@/components/micros/IntegrationBox/IntegrationBox';
 
 const IntegrationsPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,9 +16,7 @@ const IntegrationsPage = () => {
 
   return (
     <div>
-      <Button variant="contained" onClick={handleOpen}>
-        Open Slide Panel
-      </Button>
+      <IntegrationBox onClick={handleOpen} buttonText="Kiwify" />
       <SlidePanel isOpen={isOpen} onClose={handleClose}>
         <h1>Hello from the slide panel!</h1>
       </SlidePanel>
