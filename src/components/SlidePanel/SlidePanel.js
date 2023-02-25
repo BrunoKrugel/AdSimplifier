@@ -1,27 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Box, Button, Drawer, IconButton } from '@mui/material';
+import { Box, Drawer, IconButton } from '@mui/material';
 import { Close } from '@mui/icons-material';
+import { Title, ContainerTitle } from './SlidePanelStyles';
+import { HorizontalLine } from '@/components/micros/Line/Line';
 
-const SlidePanel = ({ isOpen, onClose, children }) => {
+const SlidePanel = (props) => {
   return (
-    <Drawer anchor="right" open={isOpen} onClose={onClose}>
-      <Box sx={{ width: 400 }}>
+    <Drawer anchor="right" open={props.isOpen} onClose={props.onClose}>
+      <Box sx={{ width: 400, padding: 2 }}>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <IconButton onClick={onClose}>
+          <IconButton onClick={props.onClose}>
             <Close />
           </IconButton>
         </Box>
-        {children}
+        <ContainerTitle>
+          {props.icon}
+          <Title>Integração com {props.name}</Title>
+        </ContainerTitle>
+        <HorizontalLine />
+        {props.content}
       </Box>
     </Drawer>
   );
-};
-
-SlidePanel.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
 };
 
 export default SlidePanel;

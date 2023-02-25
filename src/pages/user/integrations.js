@@ -1,13 +1,20 @@
 import { useState } from 'react';
-import { Button } from '@mui/material';
 import SlidePanel from '@/components/SlidePanel/SlidePanel';
 import { IntegrationBox } from '@/components/micros/IntegrationBox/IntegrationBox';
+import { KiwifyIcon } from '@/components/micros/Icons/icons';
+import { KiwifyContent } from '@/components/micros/Integration/IntegrationContent';
 
 const IntegrationsPage = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [integrationBox, setIntegration] = useState({});
 
-  const handleOpen = () => {
+  const handleKiwify = () => {
     setIsOpen(true);
+    setIntegration({
+      name: 'Kiwify',
+      icon: <KiwifyIcon size={40} />,
+      content: <KiwifyContent />,
+    });
   };
 
   const handleClose = () => {
@@ -16,10 +23,14 @@ const IntegrationsPage = () => {
 
   return (
     <div>
-      <IntegrationBox onClick={handleOpen} buttonText="Kiwify" />
-      <SlidePanel isOpen={isOpen} onClose={handleClose}>
-        <h1>Hello from the slide panel!</h1>
-      </SlidePanel>
+      <IntegrationBox onClick={handleKiwify} buttonText="Kiwify" />
+      <SlidePanel
+        isOpen={isOpen}
+        onClose={handleClose}
+        icon={integrationBox.icon}
+        name={integrationBox.name}
+        content={integrationBox.content}
+      ></SlidePanel>
     </div>
   );
 };

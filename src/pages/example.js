@@ -17,8 +17,6 @@ import Chart from '../components/chart/chart';
 import { ArrayOfDates } from '@/lib/dates/date';
 
 import { parseSalesToChart } from '@/lib/kiwify/parser';
-import { KiwifyLink } from '@/components/micros/integration/integration';
-import { DisplayField } from '@/components/micros/DisplayField/display';
 
 import { generateEndpoint } from '@/lib/string/endpoint';
 import {
@@ -172,8 +170,6 @@ const Aux = () => {
             dataset={sales.chartData}
             type={chart}
           />
-          <KiwifyLink />
-          <DisplayField text={generateEndpoint('user')} />
           <KiwifyIcon />
           <HotmartIcon />
           <FacebookIcon />
