@@ -1,6 +1,11 @@
 import clientPromise from '@/lib/mongo/mongo';
 import keyv from '@/lib/cache/keyv';
-import { storeDate, storeArray, isDateCached, isCached } from '@/lib/cache/cache';
+import {
+  storeDate,
+  storeArray,
+  isDateCached,
+  isCached,
+} from '@/lib/cache/cache';
 import { encodeBase64 } from '@/lib/string/base64';
 
 export default async function getSales(req, res) {
