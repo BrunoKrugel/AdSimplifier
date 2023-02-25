@@ -64,4 +64,11 @@ async function ClearCache() {
   }
 }
 
-export { storeDate, storeArray, isDateCached, isCached, getSalesCached, ClearCache };
+export {
+  storeDate,
+  storeArray,
+  isDateCached,
+  isCached,
+  getSalesCached,
+  ClearCache,
+};
