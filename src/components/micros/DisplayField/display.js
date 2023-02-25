@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const DisplayField = (props) => {
-const text = props.text;
+  const text = props.text;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(text);
