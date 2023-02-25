@@ -1,6 +1,13 @@
 import Link from 'next/link';
 import { generateEndpoint } from '@/lib/string/endpoint';
-import { Title, Text, Container } from './IntegrationContentStyled';
+import {
+  Title,
+  Text,
+  SubText,
+  Container,
+  StyledLink,
+} from './IntegrationContentStyled';
+import { DisplayField } from '@/components/micros/DisplayField/Display';
 
 const KiwifyLink = () => {
   return (
@@ -8,7 +15,7 @@ const KiwifyLink = () => {
       href="https://dashboard.kiwify.com.br/apps/webhooks/integrations"
       target="_blank"
     >
-      Kiwify
+      <StyledLink>aqui</StyledLink>
     </Link>
   );
 };
@@ -23,9 +30,19 @@ const KiwifyContent = () => {
       </Text>
       <Title>Passo a passo para a integração</Title>
       <Text>1 - Copie a URL no campo abaixo</Text>
-      <Container></Container>
+      <Container>
+        <DisplayField text={generateEndpoint('kiwify')} />
+      </Container>
 
-      <Text>2 - Clique aqui e vá para a Kiwify</Text>
+      <Text>
+        2 - Clique <KiwifyLink /> e vá para a Kiwify
+      </Text>
+      <SubText>• Clique em &quot;Criar webhook&quot;</SubText>
+      <SubText>• Cole no campo &quot;URL do Webhook&quot;</SubText>
+
+      <Text>
+        3 - Pronto, e lembre-se de não compartilhar este link com ninguém.
+      </Text>
     </div>
   );
 };

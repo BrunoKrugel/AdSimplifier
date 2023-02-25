@@ -4,7 +4,7 @@ import { adSimplifierTheme } from '@/themes/adSimplifier-theme';
 export const Title = styled.h1`
   font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: ${({ color }) => adSimplifierTheme.palette.secondary.dark};
   margin-left: 10px;
 `;
 

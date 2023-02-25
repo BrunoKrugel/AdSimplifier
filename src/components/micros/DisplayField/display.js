@@ -14,6 +14,7 @@ const DisplayField = (props) => {
   return (
     <TextField
       value={text}
+      fullWidth
       InputProps={{
         readOnly: true,
         style: { color: 'rgba(0, 0, 0, 0.54)' },
