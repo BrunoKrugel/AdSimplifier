@@ -7,7 +7,7 @@ import {
   Container,
   StyledLink,
 } from './IntegrationContentStyled';
-import { DisplayField } from '@/components/micros/DisplayField/Display';
+import { DisplayField } from '@/components/micros/DisplayField/DisplayField';
 
 const KiwifyLink = () => {
   return (
