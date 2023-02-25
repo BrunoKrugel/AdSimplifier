@@ -1,5 +1,4 @@
 import clientPromise from '@/lib/mongo/mongo';
-import keyv from '@/lib/cache/keyv';
 import {
   storeDate,
   storeArray,
