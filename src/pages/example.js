@@ -17,6 +17,15 @@ import Chart from '../components/chart/chart';
 import { ArrayOfDates } from '@/lib/dates/date';
 
 import { parseSalesToChart } from '@/lib/kiwify/parser';
+import { KiwifyLink } from '@/components/micros/integration/integration';
+import { DisplayField } from '@/components/micros/DisplayField/display';
+
+import { generateEndpoint } from '@/lib/string/endpoint';
+import {
+  FacebookIcon,
+  HotmartIcon,
+  KiwifyIcon,
+} from '@/components/micros/Icons/icons';
 
 const handleCreate = async (e) => {
   e.preventDefault();
@@ -163,6 +172,11 @@ const Aux = () => {
             dataset={sales.chartData}
             type={chart}
           />
+          <KiwifyLink />
+          <DisplayField text={generateEndpoint('user')} />
+          <KiwifyIcon />
+          <HotmartIcon />
+          <FacebookIcon />
         </Stack>
       </Section>
     </Layout>
