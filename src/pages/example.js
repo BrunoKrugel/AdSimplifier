@@ -170,9 +170,9 @@ const Aux = () => {
             dataset={sales.chartData}
             type={chart}
           />
-          <KiwifyIcon />
-          <HotmartIcon />
-          <FacebookIcon />
+          <KiwifyIcon size={40} />
+          <HotmartIcon size={40} />
+          <FacebookIcon size={40} />
         </Stack>
       </Section>
     </Layout>
