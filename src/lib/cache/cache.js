@@ -44,7 +44,7 @@ async function isCached() {
   }
 }
 
-async function getSales() {
+async function getSalesCached() {
   try {
     const clientCache = await keyv;
     const sales = await clientCache.get('sales');
@@ -64,4 +64,4 @@ async function ClearCache() {
   }
 }
 
-export { storeDate, storeArray, isDateCached, isCached, getSales, ClearCache };
+export { storeDate, storeArray, isDateCached, isCached, getSalesCached, ClearCache };

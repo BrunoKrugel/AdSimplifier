@@ -4,7 +4,7 @@ import {
   storeArray,
   isDateCached,
   isCached,
-  getSales,
+  getSalesCached,
 } from '@/lib/cache/cache';
 import { encodeBase64 } from '@/lib/string/base64';
 
@@ -12,7 +12,7 @@ export default async function getSales(req, res) {
   try {
     if (await isDateCached(req.body.initialDate, req.body.endDate)) {
       if (await isCached()) {
-        const data = await getSales();
+        const data = await getSalesCached();
         res.status(200).json(data);
         return;
       }
