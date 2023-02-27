@@ -1,6 +1,6 @@
 import keyv from '@/lib/cache/keyv';
 
-async function storeDate(initial, end) {
+async function cacheDate(initial, end) {
   try {
     const clientCache = await keyv;
     await clientCache.set('initialDate', initial);
@@ -10,10 +10,10 @@ async function storeDate(initial, end) {
   }
 }
 
-async function storeArray(array) {
+async function createCache(array, key) {
   try {
     const clientCache = await keyv;
-    await clientCache.set('sales', array);
+    await clientCache.set(key, array);
   } catch (error) {
     console.error(`Error storing array: ${error}`);
   }
@@ -33,10 +33,10 @@ async function isDateCached(initial, end) {
   }
 }
 
-async function isCached() {
+async function isCached(key) {
   try {
     const clientCache = await keyv;
-    const sales = await clientCache.get('sales');
+    const sales = await clientCache.get(key);
     return Boolean(sales);
   } catch (error) {
     console.error(`Error checking sales cache: ${error}`);
@@ -44,10 +44,10 @@ async function isCached() {
   }
 }
 
-async function getSalesCached() {
+async function getCache(key) {
   try {
     const clientCache = await keyv;
-    const sales = await clientCache.get('sales');
+    const sales = await clientCache.get(key);
     return sales;
   } catch (error) {
     console.error(`Error getting sales from cache: ${error}`);
@@ -64,11 +64,4 @@ async function ClearCache() {
   }
 }
 
-export {
-  storeDate,
-  storeArray,
-  isDateCached,
-  isCached,
-  getSalesCached,
-  ClearCache,
-};
+export { cacheDate, createCache, isDateCached, isCached, getCache, ClearCache };

@@ -71,7 +71,25 @@ const Aux = () => {
     try {
       await axios
         .post(`${window.location.origin}/api/sales/kiwify`, {
-          user_id: 'test',
+          user_id: 'lucas.bozio',
+          initialDate: startDate.format('YYYY-MM-DD'),
+          endDate: endDate.format('YYYY-MM-DD'),
+        })
+        .then((res) => {
+          setSales(
+            parseSalesToChart(res.data, ArrayOfDates(startDate, endDate))
+          );
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDataInfo = async (e) => {
+    try {
+      await axios
+        .post(`${window.location.origin}/api/sales/product`, {
+          user_id: 'lucas.bozio',
           initialDate: startDate.format('YYYY-MM-DD'),
           endDate: endDate.format('YYYY-MM-DD'),
         })
@@ -133,7 +151,10 @@ const Aux = () => {
         <br />
         <Stack spacing={3}>
           <Button onClick={handleData} variant="contained">
-            Click me
+            Get Sales
+          </Button>
+          <Button onClick={handleDataInfo} variant="contained">
+            Get Sales Info
           </Button>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker

@@ -8,11 +8,11 @@ import {
 } from '@/lib/cache/cache';
 import { encodeBase64 } from '@/lib/string/base64';
 
-export default async function getSales(req, res) {
+export default async function getProduct(req, res) {
   try {
     if (await isDateCached(req.body.initialDate, req.body.endDate)) {
-      if (await isCached('sales')) {
-        const data = await getCache('sales');
+      if (await isCached('product')) {
+        const data = await getCache('product');
         res.status(200).json(data);
         return;
       }
@@ -22,16 +22,19 @@ export default async function getSales(req, res) {
     const client = await clientPromise;
     const data = await client
       .db('kiwify-pro')
-      .collection('sales')
-      .find({
-        user_id: encodeBase64(req.body.user_id),
-        date: {
-          $gte: new Date(req.body.initialDate + 'T00:00:00.000Z'),
-          $lt: new Date(req.body.endDate + 'T00:00:01.000Z'),
+      .collection('sales_info')
+      .aggregate([
+        { $match: { userid: encodeBase64(req.body.user_id) } },
+        {
+          $group: {
+            _id: '$productname',
+            commission: { $first: '$commission' },
+            date: { $first: '$date' },
+          },
         },
-      })
+      ])
       .toArray();
-    await createCache(data, 'sales');
+    await createCache(data, 'product');
     res.status(200).json(data);
   } catch (error) {
     console.error(`Error retrieving data from database: ${error}`);
