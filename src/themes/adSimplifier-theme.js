@@ -1,4 +1,14 @@
 export const adSimplifierTheme = {
+  palette: {
+    primary: {
+      main: 'hsl(120, 38%, 42%)',
+      dark: 'hsl(132, 94%, 21%)',
+    },
+    secondary: {
+      main: 'hsl(0, 0%, 17%)',
+      dark: 'hsl(0, 0%, 0%)',
+    },
+  },
   colors: {
     englishVermillion: '#d84646',
     seashell: '#ffedec',

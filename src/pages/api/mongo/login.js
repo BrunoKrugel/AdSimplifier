@@ -1,30 +1,21 @@
 import clientPromise from '@/lib/mongo/mongo';
 
 export default async function authenticate(req, res) {
-  const client = await clientPromise;
-  const isAuthPromise = new Promise((resolve, reject) => {
-    client
+  try {
+    const client = await clientPromise;
+    const isAuthPromise = await client
       .db('account')
       .collection('user')
-      .findOne(
-        {
-          username: req.body.username,
-          password: req.body.password,
-        },
-        function (err, result) {
-          if (err || !result) {
-            reject();
-          } else {
-            resolve();
-          }
-        }
-      );
-  });
+      .findOne({
+        username: req.body.username,
+        password: req.body.password,
+      });
 
-  try {
-    await isAuthPromise;
-    res.status(200).send();
+    if (!isAuthPromise) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    return res.status(200).json({ message: 'User found' });
   } catch (error) {
-    res.status(404).send();
+    return res.status(500).json({ error: 'Error checking user' });
   }
 }

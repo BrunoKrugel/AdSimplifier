@@ -13,10 +13,17 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import React from 'react';
 import axios from 'axios';
-import Chart from '../components/chart/chart';
+import Chart from '../components/chart/Bar';
 import { ArrayOfDates } from '@/lib/dates/date';
 
 import { parseSalesToChart } from '@/lib/kiwify/parser';
+
+import { generateEndpoint } from '@/lib/string/endpoint';
+import {
+  FacebookIcon,
+  HotmartIcon,
+  KiwifyIcon,
+} from '@/components/micros/Icons/icons';
 
 const handleCreate = async (e) => {
   e.preventDefault();
@@ -64,7 +71,43 @@ const Aux = () => {
     try {
       await axios
         .post(`${window.location.origin}/api/sales/kiwify`, {
-          user_id: 'test',
+          user_id: 'lucas.bozio',
+          initialDate: startDate.format('YYYY-MM-DD'),
+          endDate: endDate.format('YYYY-MM-DD'),
+        })
+        .then((res) => {
+          setSales(
+            parseSalesToChart(res.data, ArrayOfDates(startDate, endDate))
+          );
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDataInfo = async (e) => {
+    try {
+      await axios
+        .post(`${window.location.origin}/api/sales/product`, {
+          user_id: 'lucas.bozio',
+          initialDate: startDate.format('YYYY-MM-DD'),
+          endDate: endDate.format('YYYY-MM-DD'),
+        })
+        .then((res) => {
+          setSales(
+            parseSalesToChart(res.data, ArrayOfDates(startDate, endDate))
+          );
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDataPayment = async (e) => {
+    try {
+      await axios
+        .post(`${window.location.origin}/api/sales/payment`, {
+          user_id: 'lucas.bozio',
           initialDate: startDate.format('YYYY-MM-DD'),
           endDate: endDate.format('YYYY-MM-DD'),
         })
@@ -126,7 +169,13 @@ const Aux = () => {
         <br />
         <Stack spacing={3}>
           <Button onClick={handleData} variant="contained">
-            Click me
+            Get Sales
+          </Button>
+          <Button onClick={handleDataInfo} variant="contained">
+            Get Sales Info
+          </Button>
+          <Button onClick={handleDataPayment} variant="contained">
+            Get Payment
           </Button>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker
@@ -163,6 +212,9 @@ const Aux = () => {
             dataset={sales.chartData}
             type={chart}
           />
+          <KiwifyIcon size={40} />
+          <HotmartIcon size={40} />
+          <FacebookIcon size={40} />
         </Stack>
       </Section>
     </Layout>
