@@ -13,7 +13,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import React from 'react';
 import axios from 'axios';
-import Chart from '../components/chart/chart';
+import Chart from '../components/chart/Bar';
 import { ArrayOfDates } from '@/lib/dates/date';
 
 import { parseSalesToChart } from '@/lib/kiwify/parser';
@@ -103,6 +103,24 @@ const Aux = () => {
     }
   };
 
+  const handleDataPayment = async (e) => {
+    try {
+      await axios
+        .post(`${window.location.origin}/api/sales/payment`, {
+          user_id: 'lucas.bozio',
+          initialDate: startDate.format('YYYY-MM-DD'),
+          endDate: endDate.format('YYYY-MM-DD'),
+        })
+        .then((res) => {
+          setSales(
+            parseSalesToChart(res.data, ArrayOfDates(startDate, endDate))
+          );
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleChange = (event) => {
     setChart(event.target.value);
   };
@@ -155,6 +173,9 @@ const Aux = () => {
           </Button>
           <Button onClick={handleDataInfo} variant="contained">
             Get Sales Info
+          </Button>
+          <Button onClick={handleDataPayment} variant="contained">
+            Get Payment
           </Button>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker
