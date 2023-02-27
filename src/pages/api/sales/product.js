@@ -27,7 +27,7 @@ export default async function getProduct(req, res) {
         { $match: { userid: encodeBase64(req.body.user_id) } },
         {
           $group: {
-            _id: '$productname',
+            _id: '$product_name',
             commission: { $first: '$commission' },
             date: { $first: '$date' },
           },

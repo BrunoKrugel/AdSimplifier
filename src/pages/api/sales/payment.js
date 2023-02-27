@@ -26,7 +26,7 @@ export default async function getPaymentInfo(req, res) {
       .aggregate([
         {
           $match: {
-            userid: encodeBase64(req.body.user_id),
+            user_id: encodeBase64(req.body.user_id),
             date: {
               $gte: new Date(req.body.initialDate + 'T00:00:00.000Z'),
               $lt: new Date(req.body.endDate + 'T00:00:01.000Z'),
