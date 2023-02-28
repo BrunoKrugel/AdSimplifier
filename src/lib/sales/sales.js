@@ -14,4 +14,8 @@ function getPercentage(arr, total) {
   });
 }
 
-export { buildArrOfSales, getPercentage };
+function getTotalSales(arr) {
+  return arr.reduce((acc, item) => acc + item.sales_number, 0);
+}
+
+export { buildArrOfSales, getPercentage, getTotalSales };
