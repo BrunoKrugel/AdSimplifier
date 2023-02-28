@@ -21,10 +21,10 @@ const Chart = (props) => {
     datasets: dataset,
   };
 
-  return props.type === 20 ? (
-    <Bar data={data} options={options} />
-  ) : (
+  return props.type === 10 ? (
     <Line data={data} options={options} />
+  ) : (
+    <Bar data={data} options={options} />
   );
 };
 

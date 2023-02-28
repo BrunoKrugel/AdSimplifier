@@ -14,16 +14,11 @@ import dayjs from 'dayjs';
 import React from 'react';
 import axios from 'axios';
 import Chart from '../components/chart/Bar';
+import ChartDoughnut from '../components/chart/Doughnut';
+
 import { ArrayOfDates } from '@/lib/dates/date';
 
-import { parseSalesToChart } from '@/lib/kiwify/parser';
-
-import { generateEndpoint } from '@/lib/string/endpoint';
-import {
-  FacebookIcon,
-  HotmartIcon,
-  KiwifyIcon,
-} from '@/components/micros/Icons/icons';
+import { parseSales, organizePayment } from '@/lib/kiwify/parser';
 
 const handleCreate = async (e) => {
   e.preventDefault();
@@ -61,11 +56,11 @@ const handleLogin = async (e) => {
 const Aux = () => {
   const [chart, setChart] = React.useState('');
 
-  const [startDate, setStartDate] = React.useState(
-    dayjs('2023-01-01T00:00:00')
-  );
-  const [endDate, setEndDate] = React.useState(dayjs('2023-01-01T00:00:00'));
+  const [startDate, setStartDate] = React.useState(dayjs());
+  const [endDate, setEndDate] = React.useState(dayjs());
   const [sales, setSales] = React.useState([]);
+  const [product, setProduct] = React.useState([]);
+  const [payment, setPayment] = React.useState([]);
 
   const handleData = async (e) => {
     try {
@@ -76,9 +71,7 @@ const Aux = () => {
           endDate: endDate.format('YYYY-MM-DD'),
         })
         .then((res) => {
-          setSales(
-            parseSalesToChart(res.data, ArrayOfDates(startDate, endDate))
-          );
+          setSales(parseSales(res.data, ArrayOfDates(startDate, endDate)));
         });
     } catch (error) {
       console.error(error);
@@ -94,9 +87,7 @@ const Aux = () => {
           endDate: endDate.format('YYYY-MM-DD'),
         })
         .then((res) => {
-          setSales(
-            parseSalesToChart(res.data, ArrayOfDates(startDate, endDate))
-          );
+          setSales(parseSales(res.data, ArrayOfDates(startDate, endDate)));
         });
     } catch (error) {
       console.error(error);
@@ -112,9 +103,8 @@ const Aux = () => {
           endDate: endDate.format('YYYY-MM-DD'),
         })
         .then((res) => {
-          setSales(
-            parseSalesToChart(res.data, ArrayOfDates(startDate, endDate))
-          );
+          setPayment(organizePayment(res.data));
+          console.log(organizePayment(res.data));
         });
     } catch (error) {
       console.error(error);
@@ -212,9 +202,7 @@ const Aux = () => {
             dataset={sales.chartData}
             type={chart}
           />
-          <KiwifyIcon size={40} />
-          <HotmartIcon size={40} />
-          <FacebookIcon size={40} />
+          <ChartDoughnut labels={payment.labels} data={payment.data} />
         </Stack>
       </Section>
     </Layout>

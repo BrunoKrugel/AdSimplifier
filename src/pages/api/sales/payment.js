@@ -35,14 +35,13 @@ export default async function getPaymentInfo(req, res) {
         },
         {
           $group: {
-            _id: '$paymentmethod',
+            _id: '$payment_method',
             count: { $sum: 1 },
           },
         },
       ])
       .toArray();
     await createCache(data, 'payment');
-    console.log(data);
     res.status(200).json(data);
   } catch (error) {
     console.error(`Error retrieving data from database: ${error}`);

@@ -1,6 +1,6 @@
 import { randomChartColor } from '@/lib/chart/color';
 
-function parseSalesToChart(arr, arrDates) {
+function parseSales(arr, arrDates) {
   const salesMap = new Map();
 
   arrDates.forEach((date) => {
@@ -17,12 +17,29 @@ function parseSalesToChart(arr, arrDates) {
     });
   });
   return {
-    chartData: organizeDateToChart(salesMap, arrDates),
+    chartData: organizeDate(salesMap, arrDates),
     arrDates,
   };
 }
 
-function organizeDateToChart(salesMap, arrDates) {
+function organizePayment(arr) {
+  const paymentLabels = {
+    credit_card: 'Cartão de Crédito',
+    pix: 'Pix',
+  };
+
+  const paymentData = arr.map((item) => ({
+    label: paymentLabels[item._id] || item._id,
+    count: item.count,
+  }));
+
+  return {
+    labels: paymentData.map((obj) => obj.label),
+    data: paymentData.map((obj) => obj.count),
+  };
+}
+
+function organizeDate(salesMap, arrDates) {
   return Array.from(salesMap.keys()).map((key) => {
     const color = randomChartColor();
     const sales = salesMap.get(key);
@@ -39,4 +56,4 @@ function organizeDateToChart(salesMap, arrDates) {
   });
 }
 
-export { parseSalesToChart };
+export { parseSales, organizePayment };
